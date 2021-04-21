@@ -10,7 +10,7 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Route path="/" component={Carousel}/>
-          <Route path="/cart" component={Cart}/>
+          <Route exact path="/cart" component={Cart}/>
         </Layout>
       </BrowserRouter>
     </div>

@@ -6,22 +6,13 @@ const reducer = (state, { type, payload }) => {
         products: payload
       }
     case 'ADD_TO_CART':
+      const isInCart = state.cart.filter(product => product.id === payload.id).length
+      if(isInCart) return state
+      payload.amount = 1
       return {
         ...state,
         cart: [...state.cart, payload]
       }
-    case 'OPEN_SHOP_CART':
-      return {
-        ...state,
-        showCart: true
-      }
-    case 'CLOSE_SHOP_CART':
-      return {
-        ...state,
-        cart: [...state.cart],
-        showCart: false
-      }
-
     case 'REMOVE_FROM_CART':
       return {
         ...state,
@@ -32,6 +23,13 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         query: payload
+      }
+
+    case 'CHANGE_PRODUCT_AMOUNT':
+      const productIndex = state.cart.findIndex(product => product.id === payload.product.id)
+      state.cart[productIndex].amount = payload.amount
+      return {
+        ...state
       }
       
       default:

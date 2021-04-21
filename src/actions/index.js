@@ -13,8 +13,20 @@ const setQueryFromProducts = payload => ({
   payload,
 })
 
-const openCart = () => ({
-  type: 'OPEN_SHOP_CART',
+const addToCart = payload => ({
+  type: 'ADD_TO_CART',
+  payload
 })
 
-export { removeFromCart, setQueryFromProducts, openCart, loadProducts }
+const changeProductAmount = payload => ({
+  type: 'CHANGE_PRODUCT_AMOUNT',
+  payload
+})
+
+export {
+  removeFromCart,
+  setQueryFromProducts,
+  loadProducts,
+  addToCart,
+  changeProductAmount
+}

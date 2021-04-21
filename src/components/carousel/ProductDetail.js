@@ -1,4 +1,4 @@
-const ProductDetail = ({ product }) => (
+const ProductDetail = ({ product, addToCart }) => (
   <article className="product-detail mx-1 md:mx-1 p-3">
     <div className="shadow-md flex flex-col relative p-2">
       <div className="absolute flex flex-col right-0 top-0 p-2">
@@ -27,7 +27,9 @@ const ProductDetail = ({ product }) => (
         <span>x {product.units_sf}</span>
       </p>
     </div>
-    <div className="to-cart bg-green-800 text-white p-3 duration-300 text-center cursor-pointer rounded-b md:opacity-0">
+    <div 
+      onClick={()=>addToCart(product)}
+      className="to-cart bg-green-800 text-white p-3 duration-300 text-center cursor-pointer rounded-b md:opacity-0">
         Agregar al Carrito
     </div>
   </article>
