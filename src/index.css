@@ -8,3 +8,27 @@
 .tag:hover .tag-tip {
   opacity: 1
 }
+
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next {
+  font-size: 2rem;
+  position: absolute;
+  top: 160px;
+  width: 30px;
+  height: 35px;
+  color: green !important;
+}
+
+.owl-carousel .owl-nav .owl-prev {
+  left: -20px;
+}
+.owl-carousel .owl-nav .owl-prev::after {
+  content: "<";
+}
+
+.owl-carousel .owl-nav .owl-next {
+  right: -20px;
+}
+.owl-carousel .owl-nav .owl-next::after {
+  content: ">";
+}

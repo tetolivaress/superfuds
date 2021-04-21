@@ -27,9 +27,10 @@ const reducer = (state, { type, payload }) => {
 
     case 'CHANGE_PRODUCT_AMOUNT':
       const productIndex = state.cart.findIndex(product => product.id === payload.product.id)
-      state.cart[productIndex].amount = payload.amount
+      Object.assign(state.cart[productIndex], { amount: payload.amount })
       return {
-        ...state
+        ...state,
+        cart: [...state.cart] 
       }
       
       default:
