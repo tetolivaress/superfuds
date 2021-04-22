@@ -15,7 +15,7 @@ const CartsProducts = ({ cart, changeProductAmount, removeFromCart }) => {
   return (
     <>
       <div className="flex justify-between">
-        <span className="font-bold text-l md:text-xl">Carrito de compras</span>
+        <span className="font-bold text-l md:text-4xl">Carrito de compras</span>
         <div className="font-bold text-l md:text-xl"><span className="text-green-800">{cart.length}</span> items</div>
       </div>
       <div className="grid grid-cols-5 md:grid-cols-6 justify-items-center">

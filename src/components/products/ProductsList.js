@@ -14,15 +14,13 @@ const ProductsList = ({ products, query, loadProducts, addToCart }) => {
   const [loading, setLoading] = useState(true)
   const history = useHistory()
 
-  const getProducts = async () => {
-    const productsList = await ProductsService.get()
-    loadProducts(productsList)
-    setLoading(false)
-  }
-
   useEffect(() => {
-    getProducts()
-  }, [])
+    (async () => {
+      const productsList = await ProductsService.get()
+      loadProducts(productsList)
+      setLoading(false)
+    })()
+  }, [loadProducts])
 
   useEffect(()=>{
     const product = document.getElementsByClassName('owl-item')
@@ -37,6 +35,10 @@ const ProductsList = ({ products, query, loadProducts, addToCart }) => {
   return (
     <>
       <Loading isOpen={loading}/>
+      <h1 className="pt-4">
+        <span className="font-bold text-4xl ml-8 py-8">Nuevo en SuperFuds </span>
+        <span className="text-green-800 font-bold text-lg py-2">ver mas</span>
+      </h1>
       <div className="mx-2 md:mx-4">
         <OwlCarousel options={options}>
           {

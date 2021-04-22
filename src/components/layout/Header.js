@@ -8,7 +8,7 @@ const Header = ({ setQueryFromProducts }) => {
 
   const [query, setQuery] = useState('')
 
-  useEffect(()=>setQueryFromProducts(query),[query])
+  useEffect(()=>setQueryFromProducts(query),[query, setQueryFromProducts])
 
   return (
     <nav className="fixed w-screen top-0 bg-green-400 p-6 grid grid-cols-3 items-center">
@@ -52,4 +52,4 @@ const mapDispatchToProps = {
   setQueryFromProducts
 }
 
-export default connect(()=>{}, mapDispatchToProps)(Header)
+export default connect(()=>({}), mapDispatchToProps)(Header)
