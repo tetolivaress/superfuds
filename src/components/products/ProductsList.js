@@ -36,7 +36,7 @@ const ProductsList = ({ products, query, loadProducts, addToCart }) => {
     <>
       <Loading isOpen={loading}/>
       <h1 className="pt-4">
-        <span className="font-bold text-4xl ml-8 py-8">Nuevo en SuperFuds </span>
+        <span className="font-bold text-lg md:text-4xl ml-8 py-8">Nuevo en SuperFuds </span>
         <span className="text-green-800 font-bold text-lg py-2">ver mas</span>
       </h1>
       <div className="mx-2 md:mx-4">
