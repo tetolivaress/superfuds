@@ -1,3 +1,14 @@
+import ProductsService from '@services/Products'
+
+const getProducts = () => {
+  return async dispatch => {
+    dispatch(setLoading(true))
+    const products = await ProductsService.get()
+    dispatch(loadProducts(products))
+    dispatch(setLoading(false))
+  }
+}
+
 const loadProducts = payload => ({
   type: 'LOAD_PRODUCTS',
   payload,
@@ -23,10 +34,16 @@ const changeProductAmount = payload => ({
   payload
 })
 
+const setLoading = payload => ({
+  type: 'SET_LOADING',
+  payload
+})
+
 export {
   removeFromCart,
   setQueryFromProducts,
   loadProducts,
   addToCart,
-  changeProductAmount
+  changeProductAmount,
+  getProducts
 }

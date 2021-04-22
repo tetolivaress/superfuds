@@ -32,8 +32,14 @@ const reducer = (state, { type, payload }) => {
         ...state,
         cart: [...state.cart] 
       }
+
+    case 'SET_LOADING':
+      return {
+        ...state,
+          loading: payload
+      }
       
-      default:
+    default:
       return state
   }
 }

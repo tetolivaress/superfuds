@@ -1,26 +1,19 @@
-import { useEffect, useState } from 'react'
-import ProductsService from '@services/Products'
-import { addToCart, loadProducts } from '@actions'
+import { useEffect } from 'react'
+import { addToCart, getProducts } from '@actions'
 import OwlCarousel from 'react-owl-carousel2'
 import 'react-owl-carousel2/src/owl.carousel.css'
 import { connect } from 'react-redux'
 import options from './options.json'
 import ProductDetail from './ProductDetail'
-import Loading from '@components/Loading'
 import { useHistory } from 'react-router'
 
-const ProductsList = ({ products, query, loadProducts, addToCart }) => {
+const ProductsList = ({ products, query, getProducts, addToCart }) => {
   
-  const [loading, setLoading] = useState(true)
   const history = useHistory()
 
   useEffect(() => {
-    (async () => {
-      const productsList = await ProductsService.get()
-      loadProducts(productsList)
-      setLoading(false)
-    })()
-  }, [loadProducts])
+    getProducts()
+  }, [getProducts])
 
   useEffect(()=>{
     const product = document.getElementsByClassName('owl-item')
@@ -34,7 +27,6 @@ const ProductsList = ({ products, query, loadProducts, addToCart }) => {
 
   return (
     <>
-      <Loading isOpen={loading}/>
       <h1 className="pt-4">
         <span className="font-bold text-4xl ml-8 py-8">Nuevo en SuperFuds </span>
         <span className="text-green-800 font-bold text-lg py-2">ver mas</span>
@@ -63,7 +55,7 @@ const mapStateToProps = ({ products, query }) => {
 }
 
 const mapDispatchToProps = {
-  loadProducts,
+  getProducts,
   addToCart
 }
 
