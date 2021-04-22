@@ -1,4 +1,4 @@
-import { changeProductAmount, removeFromCart } from '../../actions'
+import { changeProductAmount, removeFromCart } from '@actions'
 import { connect } from "react-redux"
 import CartsProductsDetail from './CartsProductsDetail'
 

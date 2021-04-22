@@ -1,8 +1,8 @@
-import Layout from './components/layout'
+import Layout from '@components/layout'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import Carousel from './components/carousel'
-import Cart from './components/cart'
+import Carousel from '@components/products'
+import Cart from '@components/cart'
 
 const App = () => {
   return (

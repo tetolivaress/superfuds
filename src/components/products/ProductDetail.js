@@ -1,18 +1,10 @@
+import ProductsTags from './ProductsTags'
+
 const ProductDetail = ({ product, addToCart }) => (
   <article className="product-detail mx-1 md:mx-1 p-3 hover:transform hover:scale-105 transition-all duration-300">
     <div className="shadow-md flex flex-col relative p-2">
       <div className="absolute flex flex-col right-0 top-0 p-2">
-        {
-          product.sellos.map(({ name, image }) => (
-            <div className="mb-2 tag relative rounded" key={name}>
-              <img src={image} alt={name} />
-              <span className="tag-tip opacity-0 absolute duration-300 left-full rounded top-0 text-white bg-green-800 p-4">
-                <h2 className="text-yellow-500">Producto</h2>
-                {name}
-              </span>
-            </div>
-          ))
-        }
+        <ProductsTags tags={product.sellos} />
       </div>
       
       <img src={product.thumbnail} alt={product.category} className="object-contain max-h-60 min-h-60 h-60" />

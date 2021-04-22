@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import ProductsService from '../../services/Products'
-import { addToCart, loadProducts } from '../../actions'
+import ProductsService from '@services/Products'
+import { addToCart, loadProducts } from '@actions'
 import OwlCarousel from 'react-owl-carousel2'
 import 'react-owl-carousel2/src/owl.carousel.css'
 import { connect } from 'react-redux'
 import options from './options.json'
 import ProductDetail from './ProductDetail'
-import Loading from '../Loading'
+import Loading from '@components/Loading'
 import { useHistory } from 'react-router'
 
-const ProductsList = ({ products, loadProducts, addToCart }) => {
+const ProductsList = ({ products, query, loadProducts, addToCart }) => {
   
   const [loading, setLoading] = useState(true)
   const history = useHistory()
@@ -40,22 +40,24 @@ const ProductsList = ({ products, loadProducts, addToCart }) => {
       <div className="mx-2 md:mx-4">
         <OwlCarousel options={options}>
           {
-            products.length && products.map((product, i) => (
-              <ProductDetail
-                id={product.id}
-                key={product.id}
-                product={product}
-                addToCart={handleAddToCart}
-              />
-            ))}
+            products.length && products
+              .filter(product => product.title.toLowerCase().includes(query.toLowerCase()))
+              .map((product, i) => (
+                <ProductDetail
+                  id={product.id}
+                  key={product.id}
+                  product={product}
+                  addToCart={handleAddToCart}
+                />
+              ))}
         </OwlCarousel>
       </div>
     </>
   )
 }
 
-const mapStateToProps = ({ products }) => {
-  return { products }
+const mapStateToProps = ({ products, query }) => {
+  return { products, query }
 }
 
 const mapDispatchToProps = {
