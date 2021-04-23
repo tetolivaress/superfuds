@@ -51,3 +51,21 @@
     border-right:0 solid;
   }
 }
+
+.cart-transition-appear {
+  transition: .35s;
+  transform: translateX(100vw);
+}
+
+.cart-transition-appear-active {
+  transform: translateX(0);
+  transition: 0.35s;
+}
+.cart-transition-exit {
+  transform: translateX(0);
+  transition: 0.35s;
+}
+.cart-transition-exit-active {
+  transform: translateX(v100vw);
+  transition: 0.35s;
+}

@@ -1,8 +1,8 @@
 import Layout from '@components/layout'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 import Loading from '@components/Loading'
-
-import Carousel from '@components/products'
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import Products from '@components/products'
 import Cart from '@components/cart'
 import { connect } from 'react-redux'
 
@@ -12,15 +12,35 @@ const App = ({ loading }) => {
       <Loading isOpen={loading} />
       <div className="carousel">
         <BrowserRouter>
-          <Layout>
-            <Route path="/" component={Carousel}/>
-            <Route exact path="/cart" component={Cart}/>
-          </Layout>
+          <AnimateSwitch />
         </BrowserRouter>
       </div>
     </>
   )
 }
+
+const AnimateSwitch = withRouter(({ location }) => (
+  <TransitionGroup>
+    <Layout>
+      <CSSTransition 
+        key={location.key} 
+        classNames="cart-transition" 
+        timeout={400}
+      >
+        <Route path='/' component={Products} />
+      </CSSTransition>
+    </Layout>
+    <Layout>
+      <CSSTransition 
+        key={location.key} 
+        classNames="cart-transition" 
+        timeout={400}
+      >
+        <Route exact path='/cart' component={Cart} />
+      </CSSTransition>
+    </Layout>
+  </TransitionGroup>
+))
 
 const mapStateToProps = ({ loading }) => ({ loading })
 
